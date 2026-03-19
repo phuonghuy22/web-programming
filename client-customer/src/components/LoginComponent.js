@@ -17,30 +17,114 @@ class Login extends Component {
   }
   render() {
     return (
-      <div className="align-center">
-        <h2 className="text-center">CUSTOMER LOGIN</h2>
-        <form>
-          <table className="align-center">
-            <tbody>
-              <tr>
-                <td>Username</td>
-                <td><input type="text" value={this.state.txtUsername} onChange={(e) => { this.setState({ txtUsername: e.target.value }) }} /></td>
-              </tr>
-              <tr>
-                <td>Password</td>
-                <td><input type="password" value={this.state.txtPassword} onChange={(e) => { this.setState({ txtPassword: e.target.value }) }} /></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td><input type="submit" value="LOGIN" onClick={(e) => this.btnLoginClick(e)} /></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td><Link to='/resetpwd'>Forgot password</Link></td>
-              </tr>
-            </tbody>
-          </table>
-        </form>
+      <div className="container-section" style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{
+          maxWidth: '450px',
+          width: '100%',
+          background: 'white',
+          padding: '40px',
+          borderRadius: '16px',
+          boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12)',
+        }}>
+          <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+            <h1 style={{ fontSize: '2rem', marginBottom: '10px', color: '#0066cc' }}>Welcome Back</h1>
+            <p style={{ color: '#999', fontSize: '0.95rem' }}>Sign in to your account</p>
+          </div>
+
+          <form onSubmit={(e) => this.btnLoginClick(e)}>
+            <div style={{ marginBottom: '20px' }}>
+              <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600', fontSize: '0.95rem', color: '#333' }}>
+                Username
+              </label>
+              <input
+                type="text"
+                value={this.state.txtUsername}
+                onChange={(e) => { this.setState({ txtUsername: e.target.value }) }}
+                placeholder="Enter your username"
+                style={{
+                  width: '100%',
+                  padding: '12px 15px',
+                  border: '2px solid #e0e0e0',
+                  borderRadius: '8px',
+                  fontSize: '1rem',
+                  transition: 'all 0.3s ease',
+                }}
+                onFocus={(e) => e.target.style.borderColor = '#0066cc'}
+                onBlur={(e) => e.target.style.borderColor = '#e0e0e0'}
+              />
+            </div>
+
+            <div style={{ marginBottom: '24px' }}>
+              <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600', fontSize: '0.95rem', color: '#333' }}>
+                Password
+              </label>
+              <input
+                type="password"
+                value={this.state.txtPassword}
+                onChange={(e) => { this.setState({ txtPassword: e.target.value }) }}
+                placeholder="Enter your password"
+                style={{
+                  width: '100%',
+                  padding: '12px 15px',
+                  border: '2px solid #e0e0e0',
+                  borderRadius: '8px',
+                  fontSize: '1rem',
+                  transition: 'all 0.3s ease',
+                }}
+                onFocus={(e) => e.target.style.borderColor = '#0066cc'}
+                onBlur={(e) => e.target.style.borderColor = '#e0e0e0'}
+              />
+            </div>
+
+            <div style={{ marginBottom: '24px' }}>
+              <button
+                type="submit"
+                style={{
+                  width: '100%',
+                  padding: '14px',
+                  background: 'linear-gradient(135deg, #0066cc 0%, #004999 100%)',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontSize: '1rem',
+                  fontWeight: '700',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px',
+                }}
+                onMouseEnter={(e) => e.target.style.transform = 'translateY(-2px)'}
+                onMouseLeave={(e) => e.target.style.transform = 'translateY(0)'}
+              >
+                Login
+              </button>
+            </div>
+          </form>
+
+          <div style={{ textAlign: 'center', paddingTop: '20px', borderTop: '1px solid #e0e0e0' }}>
+            <p style={{ margin: '16px 0 0 0', fontSize: '0.9rem', color: '#666' }}>
+              <Link to='/resetpwd' style={{
+                color: '#0066cc',
+                textDecoration: 'none',
+                fontWeight: '600',
+                transition: 'color 0.3s ease'
+              }}>
+                Forgot your password?
+              </Link>
+            </p>
+            <p style={{ margin: '12px 0 0 0', fontSize: '0.9rem', color: '#666' }}>
+              Don't have an account?{' '}
+              <Link to='/signup' style={{
+                color: '#0066cc',
+                textDecoration: 'none',
+                fontWeight: '600',
+                transition: 'color 0.3s ease'
+              }}>
+                Sign up here
+              </Link>
+            </p>
+          </div>
+        </div>
       </div>
     );
   }

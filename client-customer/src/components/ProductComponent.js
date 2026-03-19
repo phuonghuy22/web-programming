@@ -14,27 +14,111 @@ class Product extends Component {
   render() {
     const prods = this.state.products.map((item) => {
       return (
-        <div key={item._id} className="inline">
-          <figure>
-            <Link to={'/product/' + item._id}><img src={"data:image/jpg;base64," + item.image} width="300px" height="300px" alt="" /></Link>
-            <figcaption className="text-center">{item.name}<br />Price: {item.price}</figcaption>
-          </figure>
-        </div>
+        <Link key={item._id} to={'/product/' + item._id} style={{ textDecoration: 'none' }}>
+          <div className="product-card">
+            <div className="product-image-container">
+              <img src={"data:image/jpg;base64," + item.image} alt={item.name} />
+            </div>
+            <div className="product-info">
+              <h4 className="product-name">{item.name}</h4>
+              <div className="product-price">${item.price}</div>
+              <button style={{
+                width: '100%',
+                padding: '10px',
+                background: 'linear-gradient(135deg, #0066cc 0%, #004999 100%)',
+                color: 'white',
+                border: 'none',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontWeight: '600',
+                fontSize: '0.85rem',
+                transition: 'all 0.3s ease',
+              }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 102, 204, 0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}>
+                View Details
+              </button>
+            </div>
+          </div>
+        </Link>
       );
     });
+    
     return (
-      <div className="text-center">
-        <h2 className="text-center">LIST PRODUCTS</h2>
-        <div>
-          <select value={this.state.sort} onChange={(e) => { this.setState({ sort: e.target.value}); this.cmbSortChange(e.target.value); }}>
-            <option value="default">------Sort by------</option>
-            <option value="nameASC">Name (a &#8594; z)</option>
-            <option value="nameDESC">Name (z &#8594; a)</option>
-            <option value="priceASC">Price (low &#8594; high)</option>
-            <option value="priceDESC">Price (high &#8594; low)</option>
-          </select>
+      <div style={{ padding: '40px 20px' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <h2 style={{ marginBottom: '10px', textAlign: 'center' }}>Product Catalog</h2>
+          <p style={{ textAlign: 'center', color: '#999', marginBottom: '30px' }}>
+            Discover our amazing collection
+          </p>
+
+          {/* Sort Options */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginBottom: '30px',
+            flexWrap: 'wrap',
+            gap: '15px',
+          }}>
+            <div style={{ fontSize: '0.95rem', color: '#666' }}>
+              Found <strong>{this.state.products.length}</strong> products
+            </div>
+            <select
+              value={this.state.sort}
+              onChange={(e) => {
+                this.setState({ sort: e.target.value });
+                this.cmbSortChange(e.target.value);
+              }}
+              style={{
+                padding: '10px 14px',
+                border: '2px solid #e0e0e0',
+                borderRadius: '6px',
+                fontSize: '0.95rem',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                minWidth: '200px',
+              }}
+              onFocus={(e) => e.target.style.borderColor = '#0066cc'}
+              onBlur={(e) => e.target.style.borderColor = '#e0e0e0'}
+            >
+              <option value="default">------Sort by------</option>
+              <option value="nameASC">Name (A → Z)</option>
+              <option value="nameDESC">Name (Z → A)</option>
+              <option value="priceASC">Price (Low → High)</option>
+              <option value="priceDESC">Price (High → Low)</option>
+            </select>
+          </div>
+
+          {/* Products Grid */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+            gap: '24px',
+            padding: '0',
+          }}>
+            {prods}
+          </div>
+
+          {/* Empty State */}
+          {this.state.products.length === 0 && (
+            <div style={{
+              textAlign: 'center',
+              padding: '60px 20px',
+              color: '#999',
+            }}>
+              <div style={{ fontSize: '3rem', marginBottom: '15px' }}>📦</div>
+              <h3 style={{ color: '#666' }}>No products found</h3>
+              <p>Try adjusting your search or browse other categories</p>
+            </div>
+          )}
         </div>
-        {prods}
       </div>
     );
   }
