@@ -1,8 +1,8 @@
-# Online Shopping Platform
+# Online Shopping 
 
 ## 📱 Project Introduction
 
-**Online Shopping Platform** is a comprehensive e-commerce application that provides a complete shopping experience for customers and powerful management tools for administrators. The platform is built with a modern, scalable architecture consisting of three main components: a customer-facing web application, an admin management dashboard, and a robust backend API server. It supports essential e-commerce features including product browsing and management, shopping cart functionality, order processing, user authentication, real-time customer support chat, and email notifications.
+**Online Shopping** is a comprehensive e-commerce application that provides a complete shopping experience for customers and powerful management tools for administrators. The platform is built with a modern, scalable architecture consisting of three main components: a customer-facing web application, an admin management dashboard, and a robust backend API server. It supports essential e-commerce features including product browsing and management, shopping cart functionality, order processing, user authentication, real-time customer support chat, and email notifications.
 
 ---
 
